@@ -1,0 +1,26 @@
+<div class="container mt-4">
+    <h2>Historique des Dépôts</h2>
+  
+    <table *ngIf="depots.length > 0" class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Montant</th>
+            <th>Date de Dépôt</th>
+            <th>Compte ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let depot of depots">
+            <td>{{ depot.id }}</td>
+            <td>{{ depot.montant }}</td>
+            <td>{{ depot.dateDepot }}</td>
+            <td>{{ depot.compteId }}</td>
+
+        </tr>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-secondary" (click)="goBack()">Retour</button>
+
+  </div>
+  

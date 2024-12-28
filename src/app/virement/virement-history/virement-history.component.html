@@ -1,0 +1,30 @@
+
+
+<div class="container mt-4">
+    <h2>Historique des Virements</h2>
+  
+    <table *ngIf="virements.length > 0" class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Montant</th>
+            <th>Num Compte Destinataire</th>
+            <th>Date de Virement</th>
+            <th>Description </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let virement of virements">
+            <!-- <td>{{ virement.id }}</td> -->
+            <td>{{ virement.montant }}</td>
+            <td>{{ virement.numCompteDestinataire }}</td>
+            <td>{{ virement.dateVirement }}</td>
+            <td>{{ virement.description }}</td>
+
+        </tr>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-secondary" (click)="goBack()">Retour</button>
+
+  </div>
+  

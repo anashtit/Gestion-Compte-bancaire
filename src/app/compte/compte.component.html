@@ -1,0 +1,23 @@
+<div *ngIf="userAccounts && userAccounts.length > 0" class="accounts-container">
+  <h2>Bienvenue, {{ titulaire }}</h2>
+  <p>Voici vos comptes bancaires :</p>
+
+  <div class="accounts-list">
+    <div *ngFor="let account of userAccounts; let i = index" class="account-card">
+      <h3>Compte {{ account.numeroCompte }} ({{ account.titulaire }})</h3>
+      <p>Solde actuel : {{ account.solde | currency:'EUR' }}</p>
+
+      <!-- Boutons pour les opérations -->
+      <div class="account-actions">
+        <button class="btn btn-primary" (click)="viewDetails(account)">Détails</button>
+        <button class="btn btn-primary" (click)="navigateToDeposit(account.id)">Faire un Dépôt</button>
+        <button class="btn btn-warning" (click)="navigateToVirement(account.id)">Faire un Virement</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Message si aucun compte n'est trouvé -->
+<div *ngIf="userAccounts && userAccounts.length === 0">
+  <p>Aucun compte trouvé.</p>
+</div>

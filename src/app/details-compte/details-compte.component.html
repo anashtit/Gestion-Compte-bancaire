@@ -1,0 +1,18 @@
+<div class="account-details">
+  <h2>Détails du Compte</h2>
+
+  <!-- Titulaire et Numéro de compte -->
+  <div class="account-info">
+    <h3>Titulaire : {{ account?.titulaire }}</h3>
+    <p>Numéro de compte : {{ account?.numeroCompte }}</p>
+  </div>
+
+  <!-- Solde -->
+  <div class="balance-section">
+    <h3>Solde Actuel :</h3>
+    <p class="balance">{{ account?.solde | currency:'EUR':'symbol' }}</p>
+  </div>
+
+  <!-- Bouton Retour -->
+  <button class="btn btn-secondary" (click)="goBack()">Retour</button>
+</div>
