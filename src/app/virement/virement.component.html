@@ -1,84 +1,85 @@
-<div>
-  <h2>Effectuer un virement</h2>
-  <!-- Associer le formulaire à une variable local template 'virementForm' -->
-  <form #virementForm="ngForm" (ngSubmit)="effectuerVirement()" novalidate>
+<div class="container mt-5">
+  <h2 class="mb-4 text-primary">Effectuer un virement</h2>
+
+  <!-- Associer le formulaire au FormGroup -->
+  <form [formGroup]="virementForm" (ngSubmit)="effectuerVirement()" novalidate>
     
-    <div>
-      <label for="compteId">ID du compte</label>
-      <input 
-        type="number" 
-        id="compteId" 
-        [(ngModel)]="compteId" 
-        name="compteId" 
-        required />
-      <!-- Message d'erreur si le champ n'est pas rempli -->
-      <small *ngIf="virementForm.controls['compteId']?.invalid && virementForm.controls['compteId']?.touched" style="color: red;">
+    <!-- Champ ID du compte -->
+    <div class="mb-3">
+      <label for="compteId" class="form-label">ID du compte</label>
+      <input
+        type="number"
+        id="compteId"
+        class="form-control"
+        formControlName="compteId"/>
+      <!-- Message d'erreur -->
+      <small *ngIf="virementForm.get('compteId')?.invalid && virementForm.get('compteId')?.touched" class="text-danger">
         Ce champ est obligatoire
       </small>
     </div>
 
-    <div>
-      <label for="numCompte">Num Compte</label>
-      <input 
-        type="text" 
-        id="numCompte" 
-        [(ngModel)]="numCompte" 
-        name="numCompte" 
-        required />
-      <small *ngIf="virementForm.controls['numCompte']?.invalid && virementForm.controls['numCompte']?.touched" style="color: red;">
+    <!-- Champ Numéro de compte -->
+    <div class="mb-3">
+      <label for="numCompte" class="form-label">Numéro de compte</label>
+      <input
+        type="text"
+        id="numCompte"
+        class="form-control"
+        formControlName="numCompte"
+      />
+      <small *ngIf="virementForm.get('numCompte')?.invalid && virementForm.get('numCompte')?.touched" class="text-danger">
         Ce champ est obligatoire
       </small>
     </div>
 
-    <div>
-      <label for="montant">Montant</label>
-      <input 
-        type="number" 
-        id="montant" 
-        [(ngModel)]="montant" 
-        name="montant" 
-        required />
-      <small *ngIf="virementForm.controls['montant']?.invalid && virementForm.controls['montant']?.touched" style="color: red;">
+    <!-- Champ Montant -->
+    <div class="mb-3">
+      <label for="montant" class="form-label">Montant</label>
+      <input
+        type="number"
+        id="montant"
+        class="form-control"
+        formControlName="montant"
+      />
+      <small *ngIf="virementForm.get('montant')?.invalid && virementForm.get('montant')?.touched" class="text-danger">
         Ce champ est obligatoire
       </small>
     </div>
 
-    <div>
-      <label for="description">Description</label>
-      <input 
-        type="text" 
-        id="description" 
-        [(ngModel)]="description" 
-        name="description" 
-        required />
-      <small *ngIf="virementForm.controls['description']?.invalid && virementForm.controls['description']?.touched" style="color: red;">
+    <!-- Champ Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        rows="3"
+        formControlName="description"
+      ></textarea>
+      <small *ngIf="virementForm.get('description')?.invalid && virementForm.get('description')?.touched" class="text-danger">
         Ce champ est obligatoire
       </small>
     </div>
 
-    <!-- Bouton désactivé tant que le formulaire est invalide -->
-    <button 
-      type="submit" 
-      class="btn btn-primary" 
-      [disabled]="virementForm.invalid">
-      Envoyer
-    </button>
-    
-    <button 
-      type="button" 
-      class="btn btn-secondary" 
-      (click)="goBack()">
-      Annuler
-    </button>
-
-
-    <button type="button" class="btn btn-secondary" 
-     (click)="transferHistory()" >Historique</button>
-  
-
+    <!-- Boutons -->
+    <div class="d-flex gap-2">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="virementForm.invalid"
+      >
+        Envoyer
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="goBack()">
+        Annuler
+      </button>
+      <button type="button" class="btn btn-info" (click)="transferHistory()">
+        Historique
+      </button>
+    </div>
   </form>
 
   <!-- Messages de succès ou d'erreur -->
-  <p *ngIf="successMessage" style="color: green">{{ successMessage }}</p>
-  <p *ngIf="errorMessage" style="color: red">{{ errorMessage }}</p>
+  <p *ngIf="successMessage" class="text-success mt-3">{{ successMessage }}</p>
+  <p *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</p>
+  
 </div>
